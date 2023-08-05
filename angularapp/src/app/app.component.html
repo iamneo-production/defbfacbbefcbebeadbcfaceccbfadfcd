@@ -1,34 +1,32 @@
-<div class="col-md-6 offset-md-3">
-  <h3>CURRENCY-CONVERTER</h3>
-  
-  <form (ngSubmit)="showResult()">
-    <div class="form-control">
-      <label for="fromCurrency">FROM CURRENCY :</label>
-      <select class = "form-select form-select-sm" name="fromCurrency" id="fromCurrency"  [(ngModel)]="fromCurr" required>
+<!doctype html>
+<html lang="en">
+<head>
+   <title>How to Create a Currency Converter in JavaScript</title>
+</head>
+<body>
+   <h1>Currency Converter</h1>
+   <p> Select Currency and enter Amount to convert.</p>
+   <form>
+      <label>From:</label>
+      <select id="fromCurrency" (change)="selectfrom($event)">
+         <option value="" disabled selected hidden>fromCurrency</option>
         <option value="1.126735">USD</option>
-        <option value="0.876893">GBP</option>
-        <option value="79.677056">INR</option>
+         <option value="0.876893">GBP</option>
+         <option value="79.677056">INR</option>
       </select>
-    </div>
-  
-    <div class="form-control">
-      <label for="toCurrency">TO CURRENCY :</label>
-      <select class = "form-select form-select-sm" name="toCurrency" id="toCurrency"  [(ngModel)]="toCurr" required>
-        <option value="1.126735">USD</option>
-        <option value="0.876893">GBP</option>
-        <option value="79.677056">INR</option>
+      <label>To:</label>
+      <select id="toCurrency"(change)= "selectto($event)">
+         <option value="" disabled selected hidden>toCurrency</option>
+         <option value="1.126735">USD</option>
+         <option value="0.876893">GBP</option>
+         <option value="79.677056">INR</option>
       </select>
-    </div>
-  
-    <div class="form-control">
-      <label for ="amount">Amount :</label>
-      <input type="number" name="amount" id="amount"  [(ngModel)]="amount" required>
-    </div>
-  
-    <input class ="btn btn-primary" type="submit" value="Submit" id="submitButton" ngDefaultControl>
-  
-    <div *ngIf="show" id="result">
-      <p id="resValue">{{amount | currencyconv:fromCurr:toCurr }}</p>
-    </div>
-  </form>
-  </div>
+      <label>Amount:</label>
+      <input type="text" id="amount" #box/>
+      <button type="button" id="submitButton" (click)="getVal(box.value)">Convert</button>
+      <div class="result"></div>
+      <div class="result" id ="result">
+      <p id = "resValue">{{resValue}}</p></div>
+   </form>
+</body>
+</html>
